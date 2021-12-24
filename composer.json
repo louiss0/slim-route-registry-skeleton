@@ -1,0 +1,42 @@
+{
+    "name": "louis/slim-route-registry-skeleton",
+    "description": "This is my base php slim  starter",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shelton Louis",
+            "email": "louisshelton0@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Src\\": ["./src", "/var/www/html/src" ]
+        },
+        "files": [
+            "./src/utils/helpers/functions/helpers.php"
+        ],
+        "classmap": [
+            "./src/database/support"
+        ]
+        
+    },
+    "require": {
+        "zeuxisoo/slim-whoops": "^0.7.3",
+        "slim/http": "^1.2",
+        "monolog/monolog": "^2.3",
+        "slim/psr7": "^1.5",
+        "illuminate/support": "^8.77",
+        "louiss0/slim-route-registry": "^1.4",
+        "symfony/console": "5.*",
+        "php-di/slim-bridge": "^3.2",
+        "tuupola/cors-middleware": "^1.2",
+        "lcobucci/jwt": "^4.1",
+        "robmorgan/phinx": "^0.12.9",
+        "fakerphp/faker": "^1.17",
+        "jenssegers/blade": "^1.4",
+        "phpoption/phpoption": "^1.8",
+        "vlucas/phpdotenv": "^5.4",
+        "illuminate/database": "^8.77"
+    }
+}

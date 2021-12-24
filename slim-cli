@@ -1,0 +1,12 @@
+# !/bin/sh
+
+
+<?php
+
+use Src\Utils\Classes\CommandRunner;
+
+require_once __DIR__ ."/src/routes/console.php"; 
+
+CommandRunner::registerAndRunAllCommands();
+
+exit;

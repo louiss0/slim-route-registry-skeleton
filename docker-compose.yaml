@@ -1,0 +1,73 @@
+version: "3.8"
+
+services:
+  server:
+    image: "nginx"
+
+    ports:
+      - "8000:80"
+
+    depends_on:
+      - php
+
+    volumes:
+      - ./:/var/www/html
+
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+  php:
+    build:
+      context: ./dockerfiles
+
+      dockerfile: php.dockerfile
+
+    volumes:
+      - ./:/var/www/html:delegated
+
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+
+    env_file:
+      - ./env/.env.development
+
+  composer:
+    build:
+      context: ./dockerfiles
+
+      dockerfile: composer.dockerfile
+
+    volumes:
+      - ./:/var/www/html:delegated
+
+  mysql:
+    image: "mysql:8.0"
+
+    restart: always
+
+    depends_on:
+      - php
+
+    ports:
+      - "3306:3306"
+
+    env_file:
+      - ./env/.env.development
+
+    volumes:
+      - db:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+
+    restart: always
+
+    depends_on:
+      - mysql
+
+    ports:
+      - 8080:80
+
+    env_file:
+      - ./env/.env.development
+
+volumes:
+  db:
